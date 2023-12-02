@@ -1,24 +1,19 @@
-﻿internal class Program
+﻿namespace AoC_1;
+
+internal static class Program
 {
     public static void Main(string[] args)
     {
         var sr = new StreamReader("input.txt");
-        var line = string.Empty;
         var sumTotal = 0;
+        var line = string.Empty;
         while ((line = sr.ReadLine()) is not null)
         {
-            sumTotal += ParseLine(line.Where(char.IsDigit).ToArray());
-            Console.WriteLine(sumTotal);
+            var parsedLine = line.Where(char.IsDigit).ToArray();
+            sumTotal += int.Parse($"{parsedLine.First()}{parsedLine.Last()}");
         }
-
-
         sr.Close();
-        Console.ReadLine();
+        Console.WriteLine(sumTotal);
     }
-
-    private static int ParseLine(char[] line)
-    {
-        Console.WriteLine($"{line.FirstOrDefault()}, {line.LastOrDefault()}");
-        return 1;
-    }
+    
 }
